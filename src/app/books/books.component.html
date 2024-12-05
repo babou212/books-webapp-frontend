@@ -1,0 +1,13 @@
+<div class="books-card-container">
+    @for (book of books; track book._id) {
+    <mat-card class="books-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>{{ book.title }}</mat-card-title>
+        </mat-card-header>
+            <img mat-card-image src="{{ book.thumbnailUrl }}" alt="book thumbnail">
+        <mat-card-content>
+            <p>{{ book.description }}</p>
+        </mat-card-content>
+    </mat-card>
+    }
+</div>

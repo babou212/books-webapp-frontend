@@ -1,0 +1,16 @@
+.books-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1rem 1rem;
+  padding: 2rem;
+  }
+
+.books-card {
+    padding: 2rem;
+    max-width: 400px;
+  }
+  
+  .book-header {
+    background-size: cover;
+  }
