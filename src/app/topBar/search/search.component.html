@@ -1,0 +1,8 @@
+<div class="search">
+    <mat-form-field>
+    <input matInput #searchQuery type="search" (input)="onSearchUpdated(searchQuery.value)">
+        <button matSuffix mat-icon-button aria-label="Search">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>

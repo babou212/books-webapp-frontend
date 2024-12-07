@@ -1,3 +1,12 @@
+<div class="paginator">
+<mat-paginator [length]="totalLength"
+               [pageSize]="8"
+               [showFirstLastButtons]="true"
+               [pageIndex]="currentPage"
+               (page)="handlePageEvent($event)"
+               aria-label="Select page">
+</mat-paginator>
+</div>
 <div class="books-card-container">
     @for (book of books; track book._id) {
     <mat-card class="books-card" appearance="outlined">
@@ -6,6 +15,7 @@
         </mat-card-header>
             <img mat-card-image src="{{ book.thumbnailUrl }}" alt="book thumbnail">
         <mat-card-content>
+            <p>£{{ book.price }}</p>
             <p>{{ book.description }}</p>
         </mat-card-content>
     </mat-card>
