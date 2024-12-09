@@ -1,19 +1,6 @@
-import { Injectable, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-interface Book {
-  _id: Object;
-  title: String;
-  isbn: Number;
-  pageCount: Number;
-  publishedDate: Date;
-  thumbnailUrl: String;
-  description: String;
-  reserved: Boolean;
-  price: Number;
-  authors: String[];
-  categories: String[];
-}
+import { Book } from './interfaces/book';
 
 @Injectable({
   providedIn: 'root'

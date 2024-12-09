@@ -10,7 +10,7 @@ import { Book } from "../../interfaces/book";
 @Component({
   selector: 'Search',
   templateUrl: 'search.component.html',
-  styleUrl: 'search.Component.scss',
+  styleUrl: 'search.component.scss',
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule],
 })
 export class Search {
