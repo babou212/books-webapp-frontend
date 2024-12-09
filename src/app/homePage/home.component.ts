@@ -4,20 +4,7 @@ import { Navbar } from "../topBar/nav.component";
 import { BooksComponent } from "../books/books.component";
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Search } from "../topBar/search/search.component"; 
-
-interface Book {
-    _id: Object;
-    title: String;
-    isbn: Number;
-    pageCount: Number;
-    publishedDate: Date;
-    thumbnailUrl: String;
-    description: String;
-    reserved: Boolean;
-    price: Number;
-    authors: String[];
-    categories: String[];
- }
+import { Book } from "../interfaces/book";
 
 @Component({
   selector: 'Home',

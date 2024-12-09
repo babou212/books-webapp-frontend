@@ -1,19 +1,6 @@
 import { Component, Injectable, Input, SimpleChanges } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-
-interface Book {
-    _id: Object;
-    title: String;
-    isbn: Number;
-    pageCount: Number;
-    publishedDate: Date;
-    thumbnailUrl: String;
-    description: String;
-    reserved: Boolean;
-    price: Number;
-    authors: String[];
-    categories: String[];
- }
+import { Book } from "../interfaces/book";
 
     @Component({
     selector: 'books',

@@ -5,20 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input'; 
-
-interface Book {
-    _id: Object;
-    title: String;
-    isbn: Number;
-    pageCount: Number;
-    publishedDate: Date;
-    thumbnailUrl: String;
-    description: String;
-    reserved: Boolean;
-    price: Number;
-    authors: String[];
-    categories: String[];
-  }
+import { Book } from "../../interfaces/book";
 
 @Component({
   selector: 'Search',
