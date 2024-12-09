@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from './interfaces/book';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class BooksDataService {
   books: Book[] = [];
   bookCount = 0;
 
-  constructor(private http: HttpClient) { this.setBookCount() }
+  constructor(private http: HttpClient, private userService: UserService) { this.setBookCount() }
 
   getBooks() {
     this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1/books`).subscribe(data => {
@@ -50,12 +51,13 @@ export class BooksDataService {
   }
 
   addBook(book: Book) {
+    const httpHeaders: HttpHeaders = new HttpHeaders({
+      "x-access-token": this.userService.jwtToken
+    });
+
     this.books.push(book)
 
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json').set('x-access-token', "");
-
-    this.http.post<Book[]>(`http://127.0.0.1:5000//api/v1//books`, {headers: headers, book}).subscribe(data => {
+    this.http.post<Book>(`http://127.0.0.1:5000/api/v1/books`, book, { headers: httpHeaders }).subscribe(data => {
       console.log(data);
     })
   }

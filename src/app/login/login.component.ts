@@ -1,6 +1,5 @@
 import { UserService } from './../user.service';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -29,6 +28,5 @@ export class LoginComponent {
 
     login() {
         this.userService.userLogin(this.user, this.password);
-        console.log(this.userService.jwtToken);
     }
 }
