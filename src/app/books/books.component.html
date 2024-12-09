@@ -1,12 +1,3 @@
-<div class="paginator">
-<mat-paginator [length]="totalLength"
-               [pageSize]="8"
-               [showFirstLastButtons]="true"
-               [pageIndex]="currentPage"
-               (page)="handlePageEvent($event)"
-               aria-label="Select page">
-</mat-paginator>
-</div>
 <div class="books-card-container">
     @for (book of books; track book._id) {
     <mat-card class="books-card" appearance="outlined">

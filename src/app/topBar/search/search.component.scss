@@ -1,4 +1,6 @@
 .search {
     display: flex;
-    padding: 2rem;
+    padding: 1rem;
+    flex-flow: row wrap;
+    justify-content: center;
 }

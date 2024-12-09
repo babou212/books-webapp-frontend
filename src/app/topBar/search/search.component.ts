@@ -1,10 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { BooksDataService } from '../../books-data.service';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input'; 
-import { HttpClient } from '@angular/common/http';
 
 interface Book {
     _id: Object;
@@ -18,25 +18,28 @@ interface Book {
     price: Number;
     authors: String[];
     categories: String[];
- }
+  }
 
 @Component({
   selector: 'Search',
   templateUrl: 'search.component.html',
-  styleUrl: 'search.component.scss',
+  styleUrl: 'search.Component.scss',
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule],
 })
 export class Search {
-    books: Book[] = [];
-    searchQuery = signal<string>('');
+    searchQuery = "";
+    @Output() books = new EventEmitter<Book[]>(); 
 
-    constructor(private http: HttpClient) {}
+    constructor(private booksDataService: BooksDataService) {}
 
-    onSearchUpdated(searchQuery: string) {
-        this.searchQuery.set(searchQuery);
-
-        this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1//books/results?query=${searchQuery}`).subscribe(data => {
-            this.books = data;
-        })  
+    onSearchUpdate(searchQuery: string) {
+      if (searchQuery == "") {
+        window.location.reload();
       }
+
+      this.searchQuery = searchQuery;
+      console.log(this.searchQuery);
+
+      this.books.emit(this.booksDataService.searchBooks(this.searchQuery));
+    }
 }

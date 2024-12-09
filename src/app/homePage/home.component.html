@@ -1,0 +1,14 @@
+<div>
+    <Navbar></Navbar>
+    <div class="paginator">
+        <mat-paginator [length]="totalLength"
+                       [pageSize]="8"
+                       [showFirstLastButtons]="true"
+                       [pageIndex]="currentPage"
+                       (page)="handlePageEvent($event)"
+                       aria-label="Select page">
+        </mat-paginator>
+        </div>
+        <Search (books)="upDateBooks($event)"/>
+    <books [books]="books"></books>
+</div>
