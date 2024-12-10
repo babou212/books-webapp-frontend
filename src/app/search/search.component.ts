@@ -1,5 +1,5 @@
-import { BooksDataService } from '../../books-data.service';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { BooksDataService } from '../books-data.service';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,10 +18,6 @@ export class Search {
     constructor(private booksDataService: BooksDataService) {}
 
     onSearchUpdate(searchQuery: string) {
-      if (searchQuery == "") {
-        this.booksDataService.books = this.booksDataService.getPaginatedBooks(0, 8);
-      }
-
       this.searchQuery = searchQuery;
 
       this.booksDataService.searchBooks(this.searchQuery)

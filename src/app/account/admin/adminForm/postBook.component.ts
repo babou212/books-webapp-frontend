@@ -1,21 +1,28 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { BooksDataService } from '../../books-data.service';
+import { BooksDataService } from '../../../books-data.service';
 
 @Component({
-  selector: 'AdminForm',
-  templateUrl: 'adminForm.component.html',
-  styleUrl: 'adminForm.component.scss',
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, FormsModule, MatButtonModule],
+  selector: 'PostBook',
+  templateUrl: 'postBook.component.html',
+  styleUrl: 'postBook.component.scss',
+  imports: [CommonModule, 
+            MatFormFieldModule,
+            MatInputModule, 
+            MatSelectModule, 
+            MatCardModule, 
+            FormsModule, 
+            MatButtonModule, 
+            ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminFormComponent {
+export class PostBookComponent {
     title: string = "";
     description: string = "";
     ISBN: number = 0;
@@ -42,5 +49,4 @@ export class AdminFormComponent {
 
         this.bookDataService.addBook(newBook);
     }
- 
 }

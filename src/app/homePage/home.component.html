@@ -8,6 +8,7 @@
                        (page)="handlePageEvent($event)"
                        aria-label="Select page">
         </mat-paginator>
+        <button mat-raised-button color="primary" (click)="refresh()">Refresh</button>
         </div>
     <books [books]="books"></books>
 </div>
