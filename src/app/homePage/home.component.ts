@@ -3,14 +3,13 @@ import { BooksDataService } from './../books-data.service';
 import { Navbar } from "../topBar/nav.component";
 import { BooksComponent } from "../books/books.component";
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { Search } from "../topBar/search/search.component"; 
 import { Book } from "../interfaces/book";
 
 @Component({
   selector: 'Home',
   templateUrl: 'home.component.html',
   styleUrl: 'home.component.scss',
-  imports: [Navbar, BooksComponent, MatPaginatorModule, Search],
+  imports: [Navbar, BooksComponent, MatPaginatorModule],
 })
 export class HomeComponent {
     books: Book[] = [];
@@ -18,10 +17,15 @@ export class HomeComponent {
     pageSize: number = 8;
     currentPage: number = 0;
 
-    constructor(private booksDataService: BooksDataService) { }
+    constructor(private booksDataService: BooksDataService) { 
+        this.booksDataService.emitBooks.subscribe(
+            () => {
+              this.books = this.booksDataService.books;
+            }    
+          );
+    }
 
     upDateBooks(upDatedBooks: Book[]) {
-
         this.books = upDatedBooks;
     }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { User } from './interfaces/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   user!: User;
-  jwtToken = "";
+  userEmit = new EventEmitter<any>();
 
   constructor(private http: HttpClient) {}
     
@@ -22,22 +22,30 @@ export class UserService {
     }
 
     this.http.post<string>(`http://localhost:5000/api/v1/login`, userLoginCreds, { headers: httpHeaders }).subscribe(data => {
-      this.jwtToken = data;
+      localStorage.setItem("jwt_token", data);
     })
 
-    if (this.jwtToken) {
-      this.setUser();
+    if (localStorage.getItem("jwt_token")) {
+      this.getUser();
     }
   }
 
-  setUser() {
+  getUser() {
+    const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
-      "x-access-token": this.jwtToken
+      "x-access-token": jwt_token
     });
 
     this.http.get<User>(`http://localhost:5000/api/v1/user`, { headers: httpHeaders }).subscribe(data => {
       this.user = data;
+      this.userEmit.emit();
     })
+
+    return this.user;
+  }
+
+  getToken() {
+    return localStorage.getItem("jwt_token");
   }
 
 }

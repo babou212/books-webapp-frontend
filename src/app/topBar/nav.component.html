@@ -1,5 +1,15 @@
 <mat-toolbar>
     <span>Book Web Store</span>
     <span class="spacer"></span>
-    <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+    <Search />
+    <a routerLink="/user">
+        <button mat-raised-button class="productsServicesBtn">
+            Account
+        </button>
+    </a>
+    <a routerLink="/login">
+        <button mat-raised-button class="productsServicesBtn">
+            Login
+        </button>
+    </a>
 </mat-toolbar>

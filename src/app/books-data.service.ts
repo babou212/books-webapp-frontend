@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from './interfaces/book';
 import { UserService } from './user.service';
@@ -8,6 +8,7 @@ import { UserService } from './user.service';
 })
 export class BooksDataService {
   books: Book[] = [];
+  emitBooks = new EventEmitter<any>();
   bookCount = 0;
 
   constructor(private http: HttpClient, private userService: UserService) { this.setBookCount() }
@@ -40,6 +41,7 @@ export class BooksDataService {
     this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1//books/results?query=${searchQuery}`).subscribe(data => {
       if(data.length > 0) {
         this.books = data;
+        this.emitBooks.emit();
         shouldReturnData = true;
       } 
     })
@@ -50,14 +52,13 @@ export class BooksDataService {
     return this.books;
   }
 
-  addBook(book: Book) {
+  addBook(book: any) {
+    const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
-      "x-access-token": this.userService.jwtToken
+      "x-access-token": jwt_token
     });
 
-    this.books.push(book)
-
-    this.http.post<Book>(`http://127.0.0.1:5000/api/v1/books`, book, { headers: httpHeaders }).subscribe(data => {
+    this.http.post<any>(`http://127.0.0.1:5000/api/v1/books`, book, { headers: httpHeaders }).subscribe(data => {
       console.log(data);
     })
   }

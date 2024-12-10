@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-content>
+        <form #bookForm="ngForm" (submit)="postBook()">
+            <h4 class="card-title">Create Book</h4>
+        <mat-form-field>
+            <mat-label>Book Title</mat-label>
+            <input matInput placeholder="Book Title" [(ngModel)]="title" name="title" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Book Description</mat-label>
+            <textarea matInput placeholder="Enter Book Description" [(ngModel)]="description" name="description" required></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>ISBN</mat-label>
+            <input matInput placeholder="Enter Book ISBN" [(ngModel)]="ISBN" name="ISBN" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Page Count</mat-label>
+            <input matInput placeholder="Enter Book Page Count" [(ngModel)]="pageCount" name="pageCount" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Enter Book Price" [(ngModel)]="price" name="price" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Thumbnail URL</mat-label>
+            <input matInput placeholder="Enter Book Cover URL" [(ngModel)]="url" name="url" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Authors</mat-label>
+            <input matInput placeholder="Enter Book Authors" [(ngModel)]="authors" name="authors" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <input matInput placeholder="Enter Book Categories" [(ngModel)]="categories" name="categories" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!bookForm.form.valid">Create</button>
+    </form>
+    </mat-card-content>
+</mat-card>

@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input'; 
-import { Book } from "../../interfaces/book";
 
 @Component({
   selector: 'Search',
@@ -15,18 +14,16 @@ import { Book } from "../../interfaces/book";
 })
 export class Search {
     searchQuery = "";
-    @Output() books = new EventEmitter<Book[]>(); 
 
     constructor(private booksDataService: BooksDataService) {}
 
     onSearchUpdate(searchQuery: string) {
       if (searchQuery == "") {
-        window.location.reload();
+        this.booksDataService.books = this.booksDataService.getPaginatedBooks(0, 8);
       }
 
       this.searchQuery = searchQuery;
-      console.log(this.searchQuery);
 
-      this.books.emit(this.booksDataService.searchBooks(this.searchQuery));
+      this.booksDataService.searchBooks(this.searchQuery)
     }
 }
