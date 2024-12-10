@@ -6,14 +6,14 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { BooksDataService } from '../../../../books-data.service';
-import { Book } from '../../../../interfaces/book';
+import { BooksDataService } from '../../../books-data.service';
+import { Book } from '../../../interfaces/book';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'UpdateBook',
-  templateUrl: 'updateBook.component.html',
-  styleUrl: 'updateBook.component.scss',
+  selector: 'DeletePage',
+  templateUrl: 'delete.component.html',
+  styleUrl: 'delete.component.scss',
   imports: [CommonModule, 
     MatFormFieldModule,
     MatInputModule, 
@@ -22,9 +22,9 @@ import { HttpClient } from '@angular/common/http';
     FormsModule, 
     MatButtonModule, 
     ReactiveFormsModule],
-changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UpdateBookComponent {
+export class DeleteComponent {
     books: Book[] = [];
     book!: Book;
 
@@ -32,20 +32,8 @@ export class UpdateBookComponent {
 
     bookControl = new FormControl(this.books[0]);
 
-    updateBook() {
-        const updatedBook = {
-            "title": this.book.title,
-            "isbn": this.book.isbn,
-            "pageCount": this.book.pageCount,
-            "publishedDate": Date.now(),
-            "thumbnailUrl" : this.book.thumbnailUrl,
-            "description" :  this.book.description,
-            "price" : this.book.price,
-            "authors" : [this.book.authors],
-            "categories" : [this.book.categories],
-        }
-
-        this.booksDataService.updateBook(Object.values(this.book._id)[0], updatedBook);
+    deleteBook() {
+        this.booksDataService.deleteBook(Object.values(this.book._id)[0]);
     }
 
     ngOnInit() {

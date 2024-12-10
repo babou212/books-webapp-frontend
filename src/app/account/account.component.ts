@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../interfaces/user';
 import { CommonModule } from '@angular/common';
-import { PostBookComponent } from "./admin/adminForm/postBook.component";
-import { UpdateBookComponent } from "./admin/adminForm/updateBook/updateBook";
+import { PostBookComponent } from "./admin/postBook/postBook.component";
+import { UpdateBookComponent } from "./admin/update/updateBook";
+import { DeleteComponent } from "./admin/deleteBook/delete.component";
 
 @Component({
-  selector: 'UserPage',
-  templateUrl: 'userPage.component.html',
-  styleUrl: 'userPage.component.scss',
-  imports: [CommonModule, PostBookComponent, UpdateBookComponent],
+  selector: 'AccountPage',
+  templateUrl: 'account.component.html',
+  styleUrl: 'account.component.scss',
+  imports: [CommonModule, PostBookComponent, UpdateBookComponent, RouterModule, MatButtonModule, DeleteComponent],
 })
 export class UserPageComponent {
     user!: User;

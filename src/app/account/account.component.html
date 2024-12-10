@@ -1,0 +1,15 @@
+<ng-container *ngIf="user.role != 'admin'">
+  
+</ng-container>
+<div *ngIf="user.role == 'admin'" class="admin-container">
+    <div>
+    <a routerLink="/">
+        <button mat-raised-button class="productsServicesBtn">
+            Back
+        </button>
+    </a>
+    </div>
+    <UpdateBook></UpdateBook>
+    <PostBook></PostBook>
+    <DeletePage></DeletePage>
+</div>

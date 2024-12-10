@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-content>
+        <form #bookForm="ngForm" (submit)="deleteBook()">
+            <mat-select [(ngModel)]="book" [formControl]="bookControl" name="book">
+                @for (book of books; track book) {
+                  <mat-option [value]="book">{{book.title}}</mat-option>
+                }
+              </mat-select>
+            <button mat-raised-button color="primary" [disabled]="!bookForm.form.valid">Delete</button>
+        </form>
+    </mat-card-content>
+</mat-card>
