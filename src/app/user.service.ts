@@ -30,6 +30,26 @@ export class UserService {
     }
   }
 
+  userRegistration(userName: string, password: string) {
+    const httpHeaders: HttpHeaders = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+
+    const user = {
+      "username":  userName,
+      "password": password
+    }
+
+    this.http.post<string>(`http://localhost:5000/api/v1/users`, user, { headers: httpHeaders }).subscribe(data => {
+      localStorage.setItem("jwt_token", data);
+      console.log(data);
+    })
+
+    if (localStorage.getItem("jwt_token")) {
+      this.getUser();
+    }
+  }
+
   getUser() {
     const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
@@ -44,8 +64,23 @@ export class UserService {
     return this.user;
   }
 
-  getToken() {
-    return localStorage.getItem("jwt_token");
+  reserveBook(_id: string) {
+    const jwt_token: any = localStorage.getItem("jwt_token")
+    const httpHeaders: HttpHeaders = new HttpHeaders({
+      "x-access-token": jwt_token
+    });
+
+    this.http.put<any>(`http://127.0.0.1:5000/api/v1/users/reserve/${_id}`, {}, { headers: httpHeaders }).subscribe(data => {
+    })
   }
 
+  unreserveUserBook(_id: string) {
+    const jwt_token: any = localStorage.getItem("jwt_token")
+    const httpHeaders: HttpHeaders = new HttpHeaders({
+      "x-access-token": jwt_token
+    });
+
+    this.http.delete(`http://127.0.0.1:5000/api/v1/users/reserve/${_id}`, { headers: httpHeaders }).subscribe(data => {
+    })
+  }
 }

@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-content>
+        <form #bookForm="ngForm" (submit)="unreserveBook()">
+            <mat-select [(ngModel)]="book" [formControl]="bookControl" name="book">
+                @for (book of userBooks; track book) {
+                  <mat-option [value]="book">{{book.title}}</mat-option>
+                }
+              </mat-select>
+            <button mat-raised-button color="primary" [disabled]="!bookForm.form.valid">Un-reserve</button>
+        </form>
+    </mat-card-content>
+</mat-card>
