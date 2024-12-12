@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { BooksDataService } from '../../../books-data.service';
+import { BooksDataService } from '../../../services/book.service';
 
 @Component({
   selector: 'PostBook',

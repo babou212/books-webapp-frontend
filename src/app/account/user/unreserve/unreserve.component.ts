@@ -7,7 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { Book } from '../../../interfaces/book';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../../interfaces/user';
 

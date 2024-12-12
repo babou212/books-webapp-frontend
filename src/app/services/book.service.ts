@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Book } from './interfaces/book';
+import { Book } from '../interfaces/book';
 
 @Injectable({
   providedIn: 'root'

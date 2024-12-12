@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BooksDataService } from './../books-data.service';
+import { BooksDataService } from '../services/book.service';
 import { Navbar } from "../topBar/nav.component";
 import { BooksComponent } from "../books/books.component";
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
