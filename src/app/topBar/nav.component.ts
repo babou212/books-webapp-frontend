@@ -6,11 +6,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { Search } from "../search/search.component";
+import { LogoutComponent } from "../logout/logout.component";
 
 @Component({
   selector: 'Navbar',
   templateUrl: 'nav.component.html',
   styleUrl: 'nav.component.scss',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, RouterModule, Search],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, RouterModule, Search, LogoutComponent],
 })
 export class Navbar {}

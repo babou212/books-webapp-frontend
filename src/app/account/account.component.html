@@ -1,4 +1,4 @@
-<div *ngIf="user.role != 'admin'" class="container">
+<div *ngIf="user.role != 'admin' || user._id === ''" class="container">
     <div>
         <ReserveBooks></ReserveBooks>
         <UnreserveBooks [user]="user"></UnreserveBooks>
