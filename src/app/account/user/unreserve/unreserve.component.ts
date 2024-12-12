@@ -38,7 +38,6 @@ export class UnreserveComponent {
 
     ngOnInit() {
         this.userBooks = this.user.books.filter((book) => book.reserved == true);
-        console.log(this.user.books);
 
         this.book = this.userBooks[0];
     }

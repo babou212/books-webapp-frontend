@@ -25,7 +25,7 @@ import { BooksDataService } from '../../../services/book.service';
 export class PostBookComponent {
     title: string = "";
     description: string = "";
-    ISBN: number = 0;
+    ISBN: string = "";
     pageCount: number = 0;
     price: number = 0;
     url: string = "";
@@ -48,5 +48,15 @@ export class PostBookComponent {
         }
 
         this.bookDataService.addBook(newBook);
+
+        this.title = "";
+        this.description = "";
+        this.ISBN = "";
+        this.pageCount = 0;
+        this.price = 0;
+        this.url = "";
+        this.authors = "";
+        this.categories = "";
+
     }
 }

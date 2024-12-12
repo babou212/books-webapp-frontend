@@ -9,7 +9,6 @@ import { Book } from "../interfaces/book";
     templateUrl: './books.component.html',
     styleUrl: './books.component.scss'
     })
-
 @Injectable({providedIn: 'root'})
 export class BooksComponent {
     @Input() books: Book[] = [];

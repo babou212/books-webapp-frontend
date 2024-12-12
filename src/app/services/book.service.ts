@@ -29,6 +29,7 @@ export class BooksDataService {
   getPaginatedBooks(currentPage: number, pageSize: number) {
     this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1/books?pn=${currentPage}&ps=${pageSize}`).subscribe(data => {
       this.books = data;
+      this.emitBooks.emit();
   })
 
    return this.books;
@@ -58,6 +59,7 @@ export class BooksDataService {
     });
 
     this.http.post<Book>(`http://127.0.0.1:5000/api/v1/books`, book, { headers: httpHeaders }).subscribe(data => {
+      this.emitBooks.emit();
     })
   }
 
@@ -68,6 +70,7 @@ export class BooksDataService {
     });
 
     this.http.put<Book>(`http://127.0.0.1:5000/api/v1/books/${id}`, book, { headers: httpHeaders }).subscribe(data => {
+      this.emitBooks.emit();
     })
   }
 
@@ -78,7 +81,7 @@ export class BooksDataService {
     });
     
     this.http.delete<any>(`http://127.0.0.1:5000/api/v1/books/${id}`, { headers: httpHeaders }).subscribe(data => {
-      console.log(data);
+      this.emitBooks.emit();
     })
   }
 }
