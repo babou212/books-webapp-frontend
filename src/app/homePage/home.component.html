@@ -1,14 +1,20 @@
 <div>
     <Navbar></Navbar>
-    <div class="paginator">
-        <mat-paginator [length]="totalLength"
-                       [pageSize]="8"
-                       [showFirstLastButtons]="true"
-                       [pageIndex]="currentPage"
-                       (page)="handlePageEvent($event)"
-                       aria-label="Select page">
-        </mat-paginator>
-        <button mat-raised-button color="primary" (click)="refresh()">Refresh</button>
+    <div class="container">
+        <mat-toolbar>
+            <mat-toolbar-row>
+            <button mat-raised-button color="primary" (click)="refresh()">Refresh</button>
+            <span class="paginator">
+                <mat-paginator [length]="totalLength"
+                            [pageSize]="8"
+                            [showFirstLastButtons]="true"
+                            [pageIndex]="currentPage"
+                            (page)="handlePageEvent($event)"
+                            aria-label="Select page">
+                </mat-paginator>
+            </span>
+        </mat-toolbar-row>
+        </mat-toolbar>
         </div>
     <books [books]="books"></books>
 </div>

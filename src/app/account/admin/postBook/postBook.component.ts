@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { BooksDataService } from '../../../services/book.service';
+import { BookService } from '../../../services/book.service';
 
 @Component({
   selector: 'PostBook',
@@ -32,7 +32,7 @@ export class PostBookComponent {
     authors: string = "";
     categories: string = "";
 
-    constructor(private bookDataService: BooksDataService) {}
+    constructor(private bookService: BookService) {}
 
     postBook() {
         const newBook = {
@@ -47,7 +47,7 @@ export class PostBookComponent {
             "categories" : [this.categories],
         }
 
-        this.bookDataService.addBook(newBook);
+        this.bookService.addBook(newBook);
 
         this.title = "";
         this.description = "";

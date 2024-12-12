@@ -27,21 +27,21 @@ import { UnreserveComponent } from "./user/unreserve/unreserve.component";
     UnreserveComponent],
 })
 export class UserPageComponent {
-    user!: User;
+  user!: User;
+  isAdmin = false;
 
-    constructor(private userService: UserService, private router: Router) {
-        this.userService.userEmit.subscribe(
-            () => {
-              this.user = this.userService.user;
-            }    
-          );
-    }
+    constructor(private userService: UserService, private router: Router) {}
 
     ngOnInit() {
-        this.user = this.userService.user;
-
-        if (this.user == undefined){
-            this.router.navigate(['/login']);
+      this.userService.getUser().subscribe((user) => {
+        if (user._id == "") {
+          this.router.navigate(['/login']);
+        } else if (user.role == "admin") {
+          console.log(user.role);
+          this.isAdmin = true;
         }
+
+        this.user = user;
+      });
     }
 }

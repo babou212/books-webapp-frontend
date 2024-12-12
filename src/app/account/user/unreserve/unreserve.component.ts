@@ -8,8 +8,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { Book } from '../../../interfaces/book';
 import { UserService } from '../../../services/user.service';
-import { HttpClient } from '@angular/common/http';
 import { User } from '../../../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'UnreserveBooks',
@@ -28,16 +28,25 @@ export class UnreserveComponent {
     userBooks: Book[] = [];
     book!: Book;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private router: Router) {}
 
     bookControl = new FormControl(this.userBooks[0]);
 
     unreserveBook() {
         this.userService.unreserveUserBook(Object.values(this.book._id)[0]);
+        this.userService.getUser().subscribe((user) => user.books = user.books.filter((book) => 
+            book._id != this.book._id));
+
+        this.ngOnInit();
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate(['user']);
+        });
     }
 
     ngOnInit() {
-        this.userBooks = this.user.books.filter((book) => book.reserved == true);
+        this.userService.getUser().subscribe((user) => { 
+            this.userBooks = user.books
+        });
 
         this.book = this.userBooks[0];
     }

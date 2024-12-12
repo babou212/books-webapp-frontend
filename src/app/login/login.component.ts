@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -24,22 +25,27 @@ import { Router } from '@angular/router';
     RouterModule],
 })
 export class LoginComponent {
-    user: string = '';
+    userName: string = '';
     password: string = '';
-    validUser!: User;
+    user!: User;
     
-    constructor(private userService: UserService, private router: Router) {
-        this.userService.userEmit.subscribe(
-            () => {
-              this.validUser = this.userService.user;
-            }    
-          );
-     }
+    constructor(private userService: UserService, private router: Router) {}
 
-    async login() {
-        this.userService.userLogin(this.user, this.password);
-        if (this.validUser.username != undefined) {
+    ngOnInit() {
+      this.userService.getUser().subscribe((user) => this.user = user);
+    }
+
+    login() {
+        this.userService.userLogin(this.userName, this.password);
+
+        const loginUrl = "/login";
+        
+        this.userService.getUser().subscribe((user) => {
+          if (user._id != "" && this.router.url == loginUrl) {
+
+            console.log("halp")
             this.router.navigate(['/']);
-        }
+          }
+        })
     }
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { BooksDataService } from '../services/book.service';
+import { BookService } from '../services/book.service';
 import { Navbar } from "../topBar/nav.component";
 import { BooksComponent } from "../books/books.component";
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { Book } from "../interfaces/book";
 
@@ -10,7 +11,7 @@ import { Book } from "../interfaces/book";
   selector: 'Home',
   templateUrl: 'home.component.html',
   styleUrl: 'home.component.scss',
-  imports: [Navbar, BooksComponent, MatPaginatorModule, MatButtonModule],
+  imports: [Navbar, BooksComponent, MatPaginatorModule, MatButtonModule, MatToolbarModule],
 })
 export class HomeComponent {
     books: Book[] = [];
@@ -18,31 +19,24 @@ export class HomeComponent {
     pageSize: number = 8;
     currentPage: number = 0;
 
-    constructor(private booksDataService: BooksDataService) { 
-        this.booksDataService.emitBooks.subscribe(
-            () => {
-              this.books = this.booksDataService.books;
-            }    
-          );
-    }
+    constructor(private bookService: BookService) {}
 
     refresh() {
-        this.books = this.booksDataService.getPaginatedBooks(0, this.pageSize);
-    }
-
-    upDateBooks(upDatedBooks: Book[]) {
-        this.books = upDatedBooks;
+        this.bookService.getPaginatedBooks(0, this.pageSize);
+        this.bookService.getBooks().subscribe((books) => this.books = books);
     }
 
     handlePageEvent(pageEvent: PageEvent) {
         this.currentPage = pageEvent.pageIndex;
 
-        this.books = this.booksDataService.getPaginatedBooks(this.currentPage, this.pageSize);
+        this.bookService.getPaginatedBooks(this.currentPage, this.pageSize);
+        this.bookService.getBooks().subscribe((books) => this.books = books);
     }
     
     ngOnInit() {
-        this.totalLength = this.booksDataService.bookCount;
+        this.totalLength = this.bookService.bookCount;
 
-        this.books = this.booksDataService.getPaginatedBooks(this.currentPage, this.pageSize);
+        this.bookService.getPaginatedBooks(this.currentPage, this.pageSize);
+        this.bookService.getBooks().subscribe((books) => this.books = books);
     }
 }

@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.paginator {
+    position: absolute;
+    right: 1rem;
+    align-self: flex-end;
+}
+

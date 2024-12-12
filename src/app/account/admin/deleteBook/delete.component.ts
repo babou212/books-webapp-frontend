@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { BooksDataService } from '../../../services/book.service';
+import { BookService } from '../../../services/book.service';
 import { Book } from '../../../interfaces/book';
 import { HttpClient } from '@angular/common/http';
 
@@ -28,12 +28,12 @@ export class DeleteComponent {
     books: Book[] = [];
     book!: Book;
 
-    constructor(private booksDataService: BooksDataService, private http: HttpClient) {}
+    constructor(private bookService: BookService, private http: HttpClient) {}
 
     bookControl = new FormControl(this.books[0]);
 
     deleteBook() {
-        this.booksDataService.deleteBook(Object.values(this.book._id)[0]);
+        this.bookService.deleteBook(Object.values(this.book._id)[0]);
     }
 
     ngOnInit() {

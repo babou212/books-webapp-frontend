@@ -1,4 +1,4 @@
-import { BooksDataService } from '../services/book.service';
+import { BookService } from '../services/book.service';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,11 +15,11 @@ import { MatInputModule } from '@angular/material/input';
 export class Search {
     searchQuery = "";
 
-    constructor(private booksDataService: BooksDataService) {}
+    constructor(private bookService: BookService) {}
 
     onSearchUpdate(searchQuery: string) {
       this.searchQuery = searchQuery;
 
-      this.booksDataService.searchBooks(this.searchQuery)
+      this.bookService.searchBooks(this.searchQuery)
     }
 }

@@ -1,11 +1,11 @@
-<div *ngIf="user.role != 'admin' || user._id === ''" class="container">
+<div *ngIf="!isAdmin" class="container">
     <div>
         <ReserveBooks></ReserveBooks>
-        <UnreserveBooks [user]="user"></UnreserveBooks>
+        <UnreserveBooks></UnreserveBooks>
         <UserBooks [user]="user"></UserBooks>
     </div>
 </div>
-<div *ngIf="user.role == 'admin'" class="container">
+<div *ngIf="isAdmin" class="container">
     <div>
     <a routerLink="/">
         <button mat-raised-button class="productsServicesBtn">

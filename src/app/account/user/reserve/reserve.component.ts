@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl,  FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { Book } from '../../../interfaces/book';
 import { UserService } from '../../../services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ReserveBooks',
@@ -32,6 +33,8 @@ export class ReserveComponent {
 
     reserveBook() {
         this.userService.reserveBook(Object.values(this.book._id)[0]);
+        this.userService.getUser().subscribe((user) => user.books.push(this.book));
+        this.ngOnInit();
     }
 
     ngOnInit() {

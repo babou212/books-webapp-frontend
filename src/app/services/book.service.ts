@@ -1,23 +1,25 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from '../interfaces/book';
+import {  BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BooksDataService {
-  books: Book[] = [];
-  emitBooks = new EventEmitter<any>();
+export class BookService {
+  private bookSubject$ = new BehaviorSubject<Book[]>([]);
   bookCount = 0;
 
   constructor(private http: HttpClient) { this.setBookCount() }
 
-  getBooks() {
-    this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1/books`).subscribe(data => {
-      this.books = data;
-    })
+  getBooks(): Observable<Book[]> {
+    return this.bookSubject$;
+  }
 
-    return this.books;
+  getBooksFromApi() {
+    this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1/books`).subscribe(data => {
+      this.bookSubject$.next(data);
+    })
   }
 
   setBookCount() {
@@ -28,28 +30,17 @@ export class BooksDataService {
 
   getPaginatedBooks(currentPage: number, pageSize: number) {
     this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1/books?pn=${currentPage}&ps=${pageSize}`).subscribe(data => {
-      this.books = data;
-      this.emitBooks.emit();
+      this.bookSubject$.next(data);
   })
-
-   return this.books;
   }
 
   searchBooks(searchQuery: string) {
-    let shouldReturnData = false;
 
     this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1//books/results?query=${searchQuery}`).subscribe(data => {
       if(data.length > 0) {
-        this.books = data;
-        this.emitBooks.emit();
-        shouldReturnData = true;
+        this.bookSubject$.next(data);
       } 
     })
-
-    if (shouldReturnData) {
-      return this.books;
-    }
-    return this.books;
   }
 
   addBook(book: any) {
@@ -59,7 +50,6 @@ export class BooksDataService {
     });
 
     this.http.post<Book>(`http://127.0.0.1:5000/api/v1/books`, book, { headers: httpHeaders }).subscribe(data => {
-      this.emitBooks.emit();
     })
   }
 
@@ -70,7 +60,6 @@ export class BooksDataService {
     });
 
     this.http.put<Book>(`http://127.0.0.1:5000/api/v1/books/${id}`, book, { headers: httpHeaders }).subscribe(data => {
-      this.emitBooks.emit();
     })
   }
 
@@ -81,7 +70,6 @@ export class BooksDataService {
     });
     
     this.http.delete<any>(`http://127.0.0.1:5000/api/v1/books/${id}`, { headers: httpHeaders }).subscribe(data => {
-      this.emitBooks.emit();
     })
   }
 }
