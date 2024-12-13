@@ -1,11 +1,12 @@
 import { Component, Injectable, Input, SimpleChanges } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Book } from "../interfaces/book";
+import { CommonModule } from '@angular/common';
 
     @Component({
     selector: 'books',
     standalone: true,
-    imports: [MatCardModule],
+    imports: [MatCardModule, CommonModule],
     templateUrl: './books.component.html',
     styleUrl: './books.component.scss'
     })

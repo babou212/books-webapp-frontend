@@ -20,13 +20,29 @@ const emptyUser = {
 export class UserService {
   userSubject$ = new BehaviorSubject<User>(emptyUser);
 
+  /**
+  * The constructor for the user service
+  * @param http Injecting the HttpClient to the BookService
+  * class
+  */
+    constructor(private http: HttpClient) {}
+
+  /**
+  * getter for returning new user values
+  * @returns Observable<User[]>
+  */
   getUser(): Observable<User> {
     return this.userSubject$;
   }
 
-  constructor(private http: HttpClient) {}
+  /**
+  * returns jwt token
+  * @returns any
+  * class
+  */
+  userLogin(userName: string, password: string): any {
+    let dataToReturn = "";
 
-  userLogin(userName: string, password: string) {
     const httpHeaders: HttpHeaders = new HttpHeaders({
       "Content-Type": "application/json"
     });
@@ -42,9 +58,18 @@ export class UserService {
       if (localStorage.getItem("jwt_token")) {
         this.getUserFromJwt();
       }
+
+      dataToReturn = data;
     })
   }
 
+  /**
+  * Creates new user
+  * @param userName
+  * @param password
+  * @returns none
+  * class
+  */
   userRegistration(userName: string, password: string) {
     const httpHeaders: HttpHeaders = new HttpHeaders({
       "Content-Type": "application/json"
@@ -64,6 +89,11 @@ export class UserService {
     }
   }
 
+  /**
+  * logs user out
+  * @returns none
+  * class
+  */
   userLogout() {
     const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
@@ -85,6 +115,11 @@ export class UserService {
     })
   }
 
+  /**
+  * sets user from jwt token
+  * @returns none
+  * class
+  */
   getUserFromJwt() {
     const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
@@ -96,6 +131,12 @@ export class UserService {
     })
   }
 
+  /**
+  * reserves book for user
+  * @param _id
+  * @returns none
+  * class
+  */
   reserveBook(_id: string) {
     const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
@@ -106,6 +147,12 @@ export class UserService {
     })
   }
 
+  /**
+  * un-reserves book for user
+  * @param _id
+  * @returns none
+  * class
+  */
   unreserveUserBook(_id: string) {
     const jwt_token: any = localStorage.getItem("jwt_token")
     const httpHeaders: HttpHeaders = new HttpHeaders({
