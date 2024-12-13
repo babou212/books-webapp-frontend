@@ -7,10 +7,10 @@
             <img mat-card-image src="{{ book.thumbnailUrl }}" alt="book thumbnail">
         <mat-card-content>
             <p>£{{ book.price }}</p>
-            <div *ngIf="book.reserved" class="container">
+            <div *ngIf="!book.reserved" class="container">
                 <p>Book Available</p>
             </div>
-            <div *ngIf="!book.reserved" class="container">
+            <div *ngIf="book.reserved" class="container">
                 <p>Already Reserved</p>
             </div>
             <p>{{ book.description }}</p>
