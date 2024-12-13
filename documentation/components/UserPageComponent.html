@@ -120,6 +120,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>UserPageComponent Component</p>
+
+    </p>
 
 
 
@@ -240,12 +247,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/account/account.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/account/account.component.ts:36</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>UserPageComponent constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -319,19 +328,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/account/account.component.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/account/account.component.ts:50</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>UserPageComponent init function which grabs current user if it exists</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>none</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -360,7 +375,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/account/account.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/account/account.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -386,7 +401,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/account/account.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/account/account.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -413,6 +428,11 @@ import { UserBooksComponent } from &quot;./user/books/userBook.component&quot;;
 import { ReserveComponent } from &quot;./user/reserve/reserve.component&quot;;
 import { UnreserveComponent } from &quot;./user/unreserve/unreserve.component&quot;;
 
+/**
+ * UserPageComponent Component
+ * @export
+ * @class UserPageComponent
+ */
 @Component({
   selector: &#x27;AccountPage&#x27;,
   templateUrl: &#x27;account.component.html&#x27;,
@@ -431,8 +451,18 @@ export class UserPageComponent {
   user!: User;
   isAdmin &#x3D; false;
 
+    /**
+    * UserPageComponent constructor
+    * @param UserService
+    * @param Router
+    * @returns none
+    */
     constructor(private userService: UserService, private router: Router) {}
 
+    /**
+    * UserPageComponent init function which grabs current user if it exists
+    * @returns none
+    */
     ngOnInit() {
       this.userService.getUser().subscribe((user) &#x3D;&gt; {
         if (user._id &#x3D;&#x3D; &quot;&quot;) {

@@ -11,6 +11,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
 
+/**
+ * LoginComponent Component
+ * @export
+ * @class LoginComponent
+ */
 @Component({
   selector: 'Login',
   templateUrl: 'login.component.html',
@@ -29,12 +34,23 @@ export class LoginComponent {
     password: string = '';
     user!: User;
     
+    /**
+    * LogoutComponent constructor
+    * @param searchQuery
+    * @returns none
+    */
     constructor(private userService: UserService, private router: Router) {}
 
     ngOnInit() {
       this.userService.getUser().subscribe((user) => this.user = user);
     }
 
+    /**
+    * login function
+    * @param userName
+    * @param password
+    * @returns none
+    */
     login() {
         this.userService.userLogin(this.userName, this.password);
 

@@ -120,6 +120,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>LogoutComponent Component</p>
+
+    </p>
 
 
 
@@ -231,12 +238,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/logout/logout.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/logout/logout.component.ts:23</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>LogoutComponent constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -298,19 +307,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/app/logout/logout.component.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/logout/logout.component.ts:38</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Logs current user out</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>none</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -340,7 +355,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/logout/logout.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/logout/logout.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -359,8 +374,12 @@ import { RouterModule } from &#x27;@angular/router&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { User } from &#x27;../interfaces/user&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
 
+/**
+ * LogoutComponent Component
+ * @export
+ * @class LogoutComponent
+ */
 @Component({
   selector: &#x27;Logout&#x27;,
   templateUrl: &#x27;logout.component.html&#x27;,
@@ -373,9 +392,19 @@ import { Router } from &#x27;@angular/router&#x27;;
 export class LogoutComponent {
     validUser!: User;
     
+    /**
+    * LogoutComponent constructor
+    * @param searchQuery
+    * @returns none
+    */
     constructor(private userService: UserService) {
      }
 
+    /**
+    * Logs current user out
+    * @param searchQuery
+    * @returns none
+    */
     logout() {
         this.userService.userLogout();
         window.location.reload();

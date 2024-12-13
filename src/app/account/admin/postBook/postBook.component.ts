@@ -8,6 +8,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BookService } from '../../../services/book.service';
 
+/**
+ * PostBookComponent Component
+ * @export
+ * @class PostBookComponent
+ */
 @Component({
   selector: 'PostBook',
   templateUrl: 'postBook.component.html',
@@ -32,8 +37,17 @@ export class PostBookComponent {
     authors: string = "";
     categories: string = "";
 
+    /**
+    * PostBookComponent constructor
+    * @param BookService
+    * @returns none
+    */
     constructor(private bookService: BookService) {}
 
+    /**
+    * function to post book to bookService via api
+    * @returns none
+    */
     postBook() {
         const newBook = {
             "title": this.title,

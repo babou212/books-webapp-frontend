@@ -10,6 +10,11 @@ import { BookService } from '../../../services/book.service';
 import { Book } from '../../../interfaces/book';
 import { HttpClient } from '@angular/common/http';
 
+/**
+ * UpdateBookComponent Component
+ * @export
+ * @class UpdateBookComponent
+ */
 @Component({
   selector: 'UpdateBook',
   templateUrl: 'updateBook.component.html',
@@ -28,10 +33,20 @@ export class UpdateBookComponent {
     books: Book[] = [];
     book!: Book;
 
+    /**
+    * UpdateBookComponent constructor
+    * @param BookService
+    * @param HttpClient
+    * @returns none
+    */
     constructor(private bookService: BookService, private http: HttpClient) {}
 
     bookControl = new FormControl(this.books[0]);
 
+    /**
+    * function to update a book
+    * @returns none
+    */
     updateBook() {
         const updatedBook = {
             "title": this.book.title,
@@ -48,6 +63,10 @@ export class UpdateBookComponent {
         this.bookService.updateBook(Object.values(this.book._id)[0], updatedBook);
     }
 
+    /**
+    * UpdateBookComponent init function grabs books via api
+    * @returns none
+    */
     ngOnInit() {
         this.http.get<Book[]>(`http://127.0.0.1:5000//api/v1/books`).subscribe(data => {
             this.books = data;

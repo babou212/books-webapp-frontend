@@ -2,8 +2,6 @@ import { User } from './../interfaces/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Book } from '../interfaces/book';
-
 
 const emptyUser = {
   "_id" : "",
@@ -14,6 +12,11 @@ const emptyUser = {
   "books" : []
 }
 
+/**
+ * UserService Service
+ * @export
+ * @class UserService
+ */
 @Injectable({
   providedIn: 'root'
 })

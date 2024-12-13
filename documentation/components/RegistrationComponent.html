@@ -120,6 +120,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>RegistrationComponent Component</p>
+
+    </p>
 
 
 
@@ -242,12 +249,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/userRegistration/registration.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/userRegistration/registration.component.ts:34</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>RegistrationComponent constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -323,19 +332,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/userRegistration/registration.component.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/userRegistration/registration.component.ts:50</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Function to initiate creation of new user</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>none</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -370,7 +385,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/userRegistration/registration.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/userRegistration/registration.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -401,7 +416,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/userRegistration/registration.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/userRegistration/registration.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -427,7 +442,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/userRegistration/registration.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/userRegistration/registration.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -452,6 +467,11 @@ import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
 import { User } from &#x27;../interfaces/user&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
+/**
+ * RegistrationComponent Component
+ * @export
+ * @class RegistrationComponent
+ */
 @Component({
   selector: &#x27;Registration&#x27;,
   templateUrl: &#x27;registration.component.html&#x27;,
@@ -470,8 +490,20 @@ export class RegistrationComponent {
     password: string &#x3D; &#x27;&#x27;;
     validUser!: User;
     
+  /**
+  * RegistrationComponent constructor
+  * @param UserService 
+  * @param Router
+  * @returns none
+  * 
+  */
     constructor(private userService: UserService, private router: Router) {}
 
+  /**
+  * Function to initiate creation of new user 
+  * @returns none
+  * 
+  */
     async register() {
         this.userService.userRegistration(this.user, this.password);
         if (this.validUser.username !&#x3D; undefined) {

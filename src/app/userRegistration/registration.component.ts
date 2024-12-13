@@ -10,6 +10,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
 
+/**
+ * RegistrationComponent Component
+ * @export
+ * @class RegistrationComponent
+ */
 @Component({
   selector: 'Registration',
   templateUrl: 'registration.component.html',
@@ -28,8 +33,20 @@ export class RegistrationComponent {
     password: string = '';
     validUser!: User;
     
+  /**
+  * RegistrationComponent constructor
+  * @param UserService 
+  * @param Router
+  * @returns none
+  * 
+  */
     constructor(private userService: UserService, private router: Router) {}
 
+  /**
+  * Function to initiate creation of new user 
+  * @returns none
+  * 
+  */
     async register() {
         this.userService.userRegistration(this.user, this.password);
         if (this.validUser.username != undefined) {

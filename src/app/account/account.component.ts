@@ -12,6 +12,11 @@ import { UserBooksComponent } from "./user/books/userBook.component";
 import { ReserveComponent } from "./user/reserve/reserve.component";
 import { UnreserveComponent } from "./user/unreserve/unreserve.component";
 
+/**
+ * UserPageComponent Component
+ * @export
+ * @class UserPageComponent
+ */
 @Component({
   selector: 'AccountPage',
   templateUrl: 'account.component.html',
@@ -30,8 +35,18 @@ export class UserPageComponent {
   user!: User;
   isAdmin = false;
 
+    /**
+    * UserPageComponent constructor
+    * @param UserService
+    * @param Router
+    * @returns none
+    */
     constructor(private userService: UserService, private router: Router) {}
 
+    /**
+    * UserPageComponent init function which grabs current user if it exists
+    * @returns none
+    */
     ngOnInit() {
       this.userService.getUser().subscribe((user) => {
         if (user._id == "") {

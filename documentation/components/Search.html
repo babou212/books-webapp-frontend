@@ -120,6 +120,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Search Component</p>
+
+    </p>
 
 
 
@@ -233,12 +240,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/search/search.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/search/search.component.ts:21</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Search constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -300,14 +309,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/search/search.component.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/search/search.component.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates books via search api</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -341,7 +352,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>none</p>
+
                             </div>
                 </td>
             </tr>
@@ -377,7 +389,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/search/search.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/search/search.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -398,6 +410,11 @@ import { MatToolbarModule } from &#x27;@angular/material/toolbar&#x27;;
 import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;; 
 import { MatInputModule } from &#x27;@angular/material/input&#x27;; 
 
+/**
+ * Search Component
+ * @export
+ * @class Search
+ */
 @Component({
   selector: &#x27;Search&#x27;,
   templateUrl: &#x27;search.component.html&#x27;,
@@ -407,8 +424,19 @@ import { MatInputModule } from &#x27;@angular/material/input&#x27;;
 export class Search {
     searchQuery &#x3D; &quot;&quot;;
 
+    /**
+    * Search constructor
+    * @param BookService 
+    * @returns none
+    * 
+    */
     constructor(private bookService: BookService) {}
 
+    /**
+    * Updates books via search api
+    * @param searchQuery
+    * @returns none
+    */
     onSearchUpdate(searchQuery: string) {
       this.searchQuery &#x3D; searchQuery;
 

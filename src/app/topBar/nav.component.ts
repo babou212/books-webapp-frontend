@@ -8,6 +8,11 @@ import { RouterModule } from '@angular/router';
 import { Search } from "../search/search.component";
 import { LogoutComponent } from "../logout/logout.component";
 
+/**
+ * Navbar Component
+ * @export
+ * @class Navbar
+ */
 @Component({
   selector: 'Navbar',
   templateUrl: 'nav.component.html',

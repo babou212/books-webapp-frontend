@@ -120,6 +120,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>UpdateBookComponent Component</p>
+
+    </p>
 
 
 
@@ -249,12 +256,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/account/admin/update/updateBook.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/account/admin/update/updateBook.ts:34</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>UpdateBookComponent constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -328,19 +337,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/account/admin/update/updateBook.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/account/admin/update/updateBook.ts:70</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>UpdateBookComponent init function grabs books via api</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>none</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -365,19 +380,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/account/admin/update/updateBook.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/account/admin/update/updateBook.ts:50</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>function to update a book</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>none</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -407,7 +428,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/account/admin/update/updateBook.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/account/admin/update/updateBook.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -432,7 +453,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/account/admin/update/updateBook.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/account/admin/update/updateBook.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -463,7 +484,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/account/admin/update/updateBook.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/account/admin/update/updateBook.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -488,6 +509,11 @@ import { BookService } from &#x27;../../../services/book.service&#x27;;
 import { Book } from &#x27;../../../interfaces/book&#x27;;
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 
+/**
+ * UpdateBookComponent Component
+ * @export
+ * @class UpdateBookComponent
+ */
 @Component({
   selector: &#x27;UpdateBook&#x27;,
   templateUrl: &#x27;updateBook.component.html&#x27;,
@@ -506,10 +532,20 @@ export class UpdateBookComponent {
     books: Book[] &#x3D; [];
     book!: Book;
 
+    /**
+    * UpdateBookComponent constructor
+    * @param BookService
+    * @param HttpClient
+    * @returns none
+    */
     constructor(private bookService: BookService, private http: HttpClient) {}
 
     bookControl &#x3D; new FormControl(this.books[0]);
 
+    /**
+    * function to update a book
+    * @returns none
+    */
     updateBook() {
         const updatedBook &#x3D; {
             &quot;title&quot;: this.book.title,
@@ -526,6 +562,10 @@ export class UpdateBookComponent {
         this.bookService.updateBook(Object.values(this.book._id)[0], updatedBook);
     }
 
+    /**
+    * UpdateBookComponent init function grabs books via api
+    * @returns none
+    */
     ngOnInit() {
         this.http.get&lt;Book[]&gt;(&#x60;http://127.0.0.1:5000//api/v1/books&#x60;).subscribe(data &#x3D;&gt; {
             this.books &#x3D; data;
